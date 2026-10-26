@@ -1,0 +1,46 @@
+:root,
+:root[data-theme='dark'] {
+  --bg: #0b1b2b;
+  --bg-elevated: #0f2336;
+  --surface: #12293f;
+  --surface-2: #17334d;
+  --border: #223f5a;
+  --text: #e6f1fa;
+  --text-muted: #93abc0;
+  --accent: #38bdf8;
+  --accent-strong: #0284c7;
+  --accent-text: #38bdf8;
+  --on-accent: #06121d;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #f87171;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.35), 0 8px 24px rgb(0 0 0 / 0.25);
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --bg: #f0f9ff;
+  --bg-elevated: #e6f4fc;
+  --surface: #ffffff;
+  --surface-2: #e8f3fa;
+  --border: #cfe3f1;
+  --text: #0b1b2b;
+  --text-muted: #50697f;
+  --accent: #0284c7;
+  --accent-strong: #0369a1;
+  --accent-text: #0369a1;
+  --on-accent: #ffffff;
+  --success: #047857;
+  --warning: #b45309;
+  --danger: #b91c1c;
+  --shadow: 0 1px 2px rgb(11 27 43 / 0.08), 0 8px 24px rgb(11 27 43 / 0.08);
+  color-scheme: light;
+}
+
+:root {
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --content-width: 1080px;
+}
