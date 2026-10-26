@@ -24,6 +24,17 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Check required variables
+        env:
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
+          VITE_DEMO_PASSWORD: ${{ vars.VITE_DEMO_PASSWORD }}
+        run: |
+          for name in VITE_API_URL VITE_DEMO_PASSWORD; do
+            if [ -z "${!name}" ]; then
+              echo "::error::Missing repository variable $name. Create it in Settings > Secrets and variables > Actions > Variables > New repository variable (not in Secrets and not in an Environment)."
+              exit 1
+            fi
+          done
       - run: npm run build
         env:
           # Repository variables (Settings > Secrets and variables > Actions > Variables).

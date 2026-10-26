@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react'
-import { API_URL } from '../config'
+import { API_CONFIGURED, API_URL } from '../config'
 
-export type ApiStatus = 'checking' | 'ready' | 'down'
+export type ApiStatus = 'checking' | 'ready' | 'down' | 'unconfigured'
 
 interface ApiStatusValue {
   status: ApiStatus
@@ -18,17 +18,20 @@ const ApiStatusContext = createContext<ApiStatusValue | null>(null)
 // Starts pinging as soon as the app mounts (on any route), so a sleeping free-tier server wakes up
 // while the visitor reads the landing page. /ping/ready also touches the database.
 export function ApiStatusProvider({ children }: { children: ReactNode }) {
-  const [status, setStatus] = useState<ApiStatus>('checking')
+  const [status, setStatus] = useState<ApiStatus>(API_CONFIGURED ? 'checking' : 'unconfigured')
   const [elapsedSeconds, setElapsedSeconds] = useState(0)
   const [attempt, setAttempt] = useState(0)
 
   const retry = useCallback(() => {
+    if (!API_CONFIGURED) return
     setStatus('checking')
     setElapsedSeconds(0)
     setAttempt((n) => n + 1)
   }, [])
 
   useEffect(() => {
+    if (!API_CONFIGURED) return
+
     // Local to this run, so an old polling loop can never be revived by a newer one.
     let cancelled = false
     const startedAt = Date.now()

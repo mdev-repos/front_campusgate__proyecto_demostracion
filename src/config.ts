@@ -1,4 +1,9 @@
-export const API_URL = (import.meta.env.VITE_API_URL ?? 'http://localhost:8080').replace(/\/$/, '')
+const configuredApiUrl = (import.meta.env.VITE_API_URL ?? '').trim().replace(/\/$/, '')
+
+// In development the local API is the default. A production build without the variable is a deploy mistake,
+// so it is reported instead of silently calling the wrong place.
+export const API_URL = configuredApiUrl || (import.meta.env.DEV ? 'http://localhost:8080' : '')
+export const API_CONFIGURED = API_URL !== ''
 
 // Public on purpose: the demo accounts are meant to be tried by anyone.
 export const DEMO_PASSWORD: string = import.meta.env.VITE_DEMO_PASSWORD ?? ''

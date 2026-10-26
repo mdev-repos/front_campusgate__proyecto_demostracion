@@ -21,6 +21,7 @@ export function Login() {
   if (session) return <Navigate to="/panel" replace />
 
   const waiting = status === 'checking'
+  const unconfigured = status === 'unconfigured'
 
   async function attemptLogin(emailValue: string, passwordValue: string) {
     setBusy(true)
@@ -80,6 +81,12 @@ export function Login() {
       <div className="login-layout">
         <section className="card">
           <h1>Iniciar sesión</h1>
+          {unconfigured && (
+            <p className="form-error" role="alert">
+              Este sitio se publicó sin la URL de la API (variable <span className="mono">VITE_API_URL</span>). Hay
+              que definirla como variable del repositorio y volver a ejecutar el despliegue.
+            </p>
+          )}
           <p className="muted">Ingresá con tus credenciales o elegí una cuenta de ejemplo.</p>
           <form className="form" onSubmit={handleSubmit} noValidate>
             <div className="field">
@@ -105,7 +112,7 @@ export function Login() {
               {fieldErrors.password && <span className="field-error">{fieldErrors.password}</span>}
             </div>
             {formError && <p className="form-error" role="alert">{formError}</p>}
-            <button type="submit" className="btn btn-primary" disabled={busy || waiting}>
+            <button type="submit" className="btn btn-primary" disabled={busy || waiting || unconfigured}>
               {waiting ? 'Esperando a la API…' : busy ? 'Ingresando…' : 'Ingresar'}
             </button>
           </form>
@@ -121,7 +128,7 @@ export function Login() {
                 type="button"
                 className="quick-btn"
                 onClick={() => handleQuick(account)}
-                disabled={busy || waiting || !DEMO_PASSWORD}
+                disabled={busy || waiting || unconfigured || !DEMO_PASSWORD}
               >
                 <span className="title">{account.label}</span>
                 <span className="email">{account.email}</span>
