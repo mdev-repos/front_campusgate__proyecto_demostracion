@@ -1,13 +1,13 @@
 <div align="center">
   <img src="./public/campusgate-icon.svg" width="96" alt="CampusGate" />
 
-  # CampusGate · Front
+  # CampusGate | Front
 </div>
 
 Interfaz web de [CampusGate](https://github.com/mdev-repos/security_campusgate__proyecto_demostracion), una API
-de plataforma educativa construida para dominar Spring Security. El front no simula nada: cada acción llega a la
-API real y la interfaz **explica qué respondió y por qué** (un 401 genérico, un 403 por falta de permiso, un token
-que vence), con un inspector que muestra el JWT decodificado.
+de plataforma educativa con autenticación JWT y autorización por permisos y por pertenencia. El front no simula
+nada: cada acción llega a la API real y la interfaz **explica qué respondió y por qué** (un 401 genérico, un 403
+por falta de permiso, un token que vence), con un inspector que muestra el JWT decodificado.
 
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)
@@ -17,6 +17,9 @@ que vence), con un inspector que muestra el JWT decodificado.
 **🖥️ Demo en vivo**: https://mdev-repos.github.io/front_campusgate__proyecto_demostracion/
 **🚀 API**: https://campus-gate-44s4.onrender.com
 _(la API corre en el plan gratuito de Render: la primera carga tras un rato sin uso puede tardar ~30-60 s mientras la instancia despierta; el semáforo del encabezado muestra el estado)_
+
+No hace falta instalar ni ejecutar nada: la demo ya está publicada y tiene tres cuentas de ejemplo de un clic
+(administrador, profesor y alumno) con datos ficticios.
 
 ---
 
@@ -98,25 +101,15 @@ src/
 ## Decisiones
 
 - **El JWT vive en `sessionStorage`**: se pierde al cerrar la pestaña. Es un compromiso de la demo; con refresh
-  tokens en cookie `HttpOnly` sería más seguro (se trabaja en NodoBank).
+  tokens en cookie `HttpOnly` sería más seguro; la API actual no los tiene.
 - **La interfaz oculta, el servidor decide**: los botones aparecen según los permisos del token, pero la
   autorización real siempre la hace la API.
 - **Las cuentas de ejemplo son públicas a propósito**: la API las protege (no cambian contraseña ni se
   bloquean) y reinicia los datos cada día.
 
-## Roadmap
-
-- [x] Landing, tema oscuro/claro, semáforo de la API
-- [x] Login y cuentas de ejemplo
-- [x] Inspector de token
-- [x] Vistas del administrador (usuarios, perfiles, cursos, matrículas)
-- [x] Vistas del profesor y del alumno
-- [x] Laboratorio de acciones prohibidas (para ver los 401, 403 y 400)
-- [x] Deploy en GitHub Pages (workflow de GitHub Actions)
-
 ## Autor
 
 **Matías Mazzitelli**
-_Backend Developer — Java / Spring Boot_
+_Backend Developer | Java / Spring Boot_
 
 [GitHub] https://github.com/mdev-repos · [LinkedIn] https://www.linkedin.com/in/mnm-dev
