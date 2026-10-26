@@ -12,10 +12,11 @@ que vence), con un inspector que muestra el JWT decodificado.
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?logo=typescript&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
-![Status](https://img.shields.io/badge/status-en%20desarrollo-yellow)
+![Status](https://img.shields.io/badge/status-deployado-brightgreen)
 
-**🖥️ Demo en vivo**: _(pendiente de deploy)_
+**🖥️ Demo en vivo**: https://mdev-repos.github.io/front_campusgate__proyecto_demostracion/
 **🚀 API**: https://campus-gate-44s4.onrender.com
+_(la API corre en el plan gratuito de Render: la primera carga tras un rato sin uso puede tardar ~30-60 s mientras la instancia despierta; el semáforo del encabezado muestra el estado)_
 
 ---
 
@@ -111,7 +112,7 @@ src/
 - [x] Vistas del administrador (usuarios, perfiles, cursos, matrículas)
 - [x] Vistas del profesor y del alumno
 - [x] Laboratorio de acciones prohibidas (para ver los 401, 403 y 400)
-- [ ] Deploy en GitHub Pages
+- [x] Deploy en GitHub Pages (workflow de GitHub Actions)
 
 ## Autor
 
